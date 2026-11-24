@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// Fungsi untuk menghitung panjang string sekaligus menghapus karakter Enter ('\n')
+// Fungsi menghitung panjang string sekaligus menghapus karakter Enter ('\n')
 int bersihkanDanHitung(char teks[]) {
     int i = 0;
     while (teks[i] != '\0') {
@@ -13,19 +13,19 @@ int bersihkanDanHitung(char teks[]) {
     return i;
 }
 
-// Fungsi pengecekan palindrom dengan metode Two-Pointer
+// Fungsi mengecek palindrom dengan metode Two-Pointer
 int cekPalindrom(const char teks[], int panjang) {
     int kiri = 0;
     int kanan = panjang - 1;
 
     while (kiri < kanan) {
         if (teks[kiri] != teks[kanan]) {
-            return 0; // Langsung kembalikan 0 (bukan palindrom) jika ada yang beda
+            return 0; // Langsung kembalikan 0 jika ada huruf yang tidak cocok
         }
         kiri++;
         kanan--;
     }
-    return 1; // Semua pasangan ujung cocok -> palindrom
+    return 1; // Kembalikan 1 jika seluruh pasangan ujung cocok
 }
 
 int main() {
@@ -36,11 +36,11 @@ int main() {
     fgets(kata, sizeof(kata), stdin);
 
     int panjang = bersihkanDanHitung(kata);
-
-    if (cekPalindrom(kata, panjang)) {
-        printf("Hasil: \"%s\" adalah PALINDROM (panjang: %d huruf).\n", kata, panjang);
+    // Cek apakah kata merupakan palindrom berdasarkan hasil fungsi cekPalindrom
+    if (cekPalindrom(kata, panjang) == 1) {
+        printf("Hasil: \"%s\" adalah palindrom (panjang: %d karakter).\n", kata, panjang);
     } else {
-        printf("Hasil: \"%s\" BUKAN palindrom.\n", kata);
+        printf("Hasil: \"%s\" bukan palindrom (panjang: %d karakter).\n", kata, panjang);
     }
 
     return 0;
